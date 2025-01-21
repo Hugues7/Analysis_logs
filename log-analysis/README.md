@@ -55,7 +55,7 @@ Prepare your log dataset in a CSV format with the following columns:
 ```plaintext
 log-analysis/
 ├── data/
-│   ├── logs.csv              # Input log dataset
+│   ├── all_logs.csv              # Input log dataset
 ├── notebooks/
 │   ├── analysis.ipynb        # Jupyter Notebook for exploration
 ├── scripts/
