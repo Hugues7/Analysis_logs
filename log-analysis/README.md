@@ -1,4 +1,4 @@
-# Log Analysis Pipeline
+# Log Analysis Anomalies
 
 This repository provides a complete pipeline for log analysis, from data preprocessing to anomaly detection and
 reporting. The pipeline is designed to handle logs with the following structure:
