@@ -1,102 +1,59 @@
-# Log Analysis Anomalies
+# Détection d'Anomalies et Analyse des Journaux de Requête
 
-This repository provides a complete pipeline for log analysis, from data preprocessing to anomaly detection and
-reporting. The pipeline is designed to handle logs with the following structure:
+## 📝 Description du Projet
+Ce projet vise à analyser des journaux de requête (logs) afin de détecter des anomalies, classifier les erreurs, et regrouper les événements similaires à l'aide de techniques de Machine Learning et d'analyse de données. Les logs, générés par des systèmes, contiennent des informations précieuses pour la surveillance, le diagnostic et l'optimisation des performances.
 
-| Date                             | Hostname  | Process         | IdProcess | Message                                           |
-|----------------------------------|-----------|-----------------|-----------|---------------------------------------------------|
-| 2024-12-11T17:14:51.738480+01:00 | hilbert02 | gnome-shell     | 2026.0    | meta_window_set_stack_position_no_sync: assert... |
-| 2024-12-11T17:20:14.050043+01:00 | hilbert02 | gnome-text-edit | 6677.0    | Trying to snapshot GtkGizmo 0x559f9a9e7800 wit... |
+## Objectifs Principaux
+Détection d'Anomalies : Identifier des comportements inhabituels dans les logs, tels que des pics de requêtes anormaux ou des erreurs inattendues.
 
-## Features
+Classification des Erreurs : Distinguer les logs normaux des logs d'erreur à l'aide de modèles de classification supervisée.
 
-1. **Data Preprocessing**
-   - Handles missing values (e.g., `NaN` in `IdProcess`).
-   - Parses and normalizes timestamps.
-   - Categorizes log messages into `Error`, `Warning`, or `Info`.
+Clustering des Événements : Regrouper les logs similaires pour découvrir des motifs récurrents et mieux comprendre les tendances.
 
-2. **Exploratory Data Analysis (EDA)**
-   - Generates summary statistics for processes and error types.
-   - Visualizes log distribution over time.
-   - Identifies processes generating frequent errors.
+Visualisation des Résultats : Fournir des graphiques et des rapports clairs pour faciliter l'interprétation des résultats.
 
-3. **Anomaly Detection**
-   - Detects anomalies based on log frequencies.
-   - Implements Isolation Forest for machine learning-based anomaly detection.
+## 🏛️ Architecture
+Les principales étapes de l'analyse sont les suivantes :
 
-4. **Reporting**
-   - Outputs summary tables and visualizations.
-   - Supports exporting processed logs and reports in CSV format.
+1. **Préparation des Données** : Chargement et nettoyage des données issues des journaux de requêtes.
+2. **Analyse Exploratoire** : Analyse des occurrences des processus, des erreurs et de leur répartition temporelle.
+3. **Détection des Anomalies** :
+   - Identification des pics de logs inhabituels
+   - Utilisation de l'algorithme Isolation Forest
+4. **Classification** : Modélisation supervisée pour distinguer les erreurs des logs normaux (Random Forest).
+5. **Clustering** : Regroupement des logs similaires avec K-Means.
+6. **Visualisation & Génération de Rapports** : Statistiques et graphiques.
 
----
+## ⚙️ Prérequis
+Assurez-vous d'avoir les éléments suivants :
+- Python 3.7 ou supérieur
+- Librairies Python :
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - jupyter 
 
-## Setup
+# 📈 Résultats et Visualisation
+## 1-Détection d'Anomalies
+Après applicationde la méthode **Isolation Forest**, il a été obtenu **1848 anomalies** et le graphique d'evaluation des nombres logs montre une évolution des logs par heure avec une détection d'anomalies marquées par des points rouges, principalement corrélées à des pics massifs d'activité. Ces pics, particulièrement concentrés autour de la mi-décembre 2024, dépassent les **20 000** logs par heure, ce qui constitue une déviation majeure par rapport aux volumes standards. Une hausse moins prononcée est également visible début janvier 2025. La concentration des anomalies sur ces périodes suggère des incidents critiques tels que des pannes système, des surcharges liées à une maintenance, voire des attaques potentielles (type Denial of Service).
 
-### Prerequisites
+## 2-Classification des Erreurs
+Le modèle de classification obtenue affiche une accuracy de 99,99 %, ce qui signifie qu'il classe correctement presque toutes les instances du jeu de données. Le rapport de classification montre une précision et un rappel de 1,00 pour la classe majoritaire (0), indiquant une performance parfaite. Pour la classe minoritaire (1), la précision est également de 1,00, mais le rappel est légèrement inférieur à 0,99, ce qui signifie que 1 % des anomalies n'ont pas été détectées. Les moyennes macro et pondérée des métriques (précision, rappel, F1-Score) sont toutes de 1,00, confirmant une performance équilibrée et excellente. Cependant, il est important de vérifier si le modèle généralise bien sur de nouvelles données et de s'assurer que le déséquilibre entre les classes n'affecte pas sa robustesse.
 
-Ensure you have Python 3.8+ installed along with the following packages:
+## 3-Clustering des Événements
+On observe une bonne séparation entre les groupes, ce qui indique une différenciation nette des logs selon les processus et les hôtes associés. Les clusters semblent répartis selon des plages spécifiques de processus, suggérant des comportements homogènes pour certains processus ou groupes de machines.
+Le cluster 1 (vert) présente une dispersion plus large sur les hôtes, tandis que les clusters 0 (bleu) et 2 (orange) sont concentrés autour de certaines plages de processus.
 
-```bash
-pip install pandas matplotlib scikit-learn
-```
+# Technologies Utilisées
+**Python** : Langage principal pour le traitement des données et l'implémentation des modèles.
 
-### Dataset
+**Pandas et NumPy** : Pour la manipulation et l'analyse des données.
 
-Prepare your log dataset in a CSV format with the following columns:
+**Scikit-learn** : Pour les algorithmes de Machine Learning (classification, clustering, détection d'anomalies).
 
-- `Date`: Timestamp of the log entry.
-- `Hostname`: System generating the log.
-- `Process`: Name of the process.
-- `IdProcess`: Process ID.
-- `Message`: Log description.
+**Matplotlib et Seaborn** : Pour la visualisation des données.
 
-### Project Structure
-
-```plaintext
-log-analysis/
-├── data/
-│   ├── all_logs.csv              # Input log dataset
-├── notebooks/
-│   ├── analysis.ipynb        # Jupyter Notebook for exploration
-├── scripts/
-│   ├── preprocess.py         # Data preprocessing script
-│   ├── anomaly_detection.py  # Anomaly detection script
-├── outputs/
-│   ├── processed_logs.csv    # Cleaned and categorized logs
-│   ├── reports/              # Generated reports and visualizations
-└── README.md                 # Project documentation
-```
-
----
-
-## Usage
-
-### 1. Preprocessing
-
-Run the preprocessing script to clean and categorize the logs.
-
-```bash
-python scripts/preprocess.py --input data/logs.csv --output outputs/processed_logs.csv
-```
-
-### 2. Exploratory Data Analysis
-
-Use the Jupyter Notebook to perform exploratory analysis and visualize trends.
-
-```bash
-jupyter notebook notebooks/analysis.ipynb
-```
-
-### 3. Anomaly Detection
-
-Run the anomaly detection script to identify unusual log patterns.
-
-```bash
-python scripts/anomaly_detection.py --input outputs/processed_logs.csv --output outputs/anomalies.csv
-```
-
-### 4. Reporting
-
-View summary tables and visualizations in the `outputs/reports/` folder.
-
+**Jupyter Notebook** : Pour l'exploration interactive des données et la documentation des analyses.
 
