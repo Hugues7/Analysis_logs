@@ -27,7 +27,7 @@ Les principales étapes de l'analyse sont les suivantes :
    - Utilisation de l'algorithme Isolation Forest
 4. **Classification** : Modélisation supervisée pour distinguer les erreurs des logs normaux (Random Forest).
 5. **Clustering** : Regroupement des logs similaires avec K-Means.
-6. **Visualisation & Génération de Rapports** : Statistiques et graphiques.
+6. **Visualisation** : Statistiques et graphiques.
 
    
 |Données Brutes|---> |Préparation des Données|---> | Analyse Exploratoire |--->| Détection des  Anomalies |---> | Classification |---> | Clustering |--->|Visualisation|
