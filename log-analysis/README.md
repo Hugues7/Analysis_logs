@@ -11,7 +11,12 @@ Classification des Erreurs : Distinguer les logs normaux des logs d'erreur à l'
 Clustering des Événements : Regrouper les logs similaires pour découvrir des motifs récurrents et mieux comprendre les tendances.
 
 Visualisation des Résultats : Fournir des graphiques et des rapports clairs pour faciliter l'interprétation des résultats.
+## Dataset
 
+| Date                             | Hostname  | Process         | IdProcess | Message                                           |
+|----------------------------------|-----------|-----------------|-----------|---------------------------------------------------|
+| 2024-12-11T17:14:51.738480+01:00 | hilbert02 | gnome-shell     | 2026.0    | meta_window_set_stack_position_no_sync: assert... |
+| 2024-12-11T17:20:14.050043+01:00 | hilbert02 | gnome-text-edit | 6677.0    | Trying to snapshot GtkGizmo 0x559f9a9e7800 wit... |
 ## 🏛️ Architecture
 Les principales étapes de l'analyse sont les suivantes :
 
