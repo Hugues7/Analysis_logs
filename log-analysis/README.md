@@ -38,13 +38,19 @@ Assurez-vous d'avoir les éléments suivants :
 # 📈 Résultats et Visualisation
 ## 1-Détection d'Anomalies
 Après applicationde la méthode **Isolation Forest**, il a été obtenu **1848 anomalies** et le graphique d'evaluation des nombres logs montre une évolution des logs par heure avec une détection d'anomalies marquées par des points rouges, principalement corrélées à des pics massifs d'activité. Ces pics, particulièrement concentrés autour de la mi-décembre 2024, dépassent les **20 000** logs par heure, ce qui constitue une déviation majeure par rapport aux volumes standards. Une hausse moins prononcée est également visible début janvier 2025. La concentration des anomalies sur ces périodes suggère des incidents critiques tels que des pannes système, des surcharges liées à une maintenance, voire des attaques potentielles (type Denial of Service).
+![image](https://github.com/user-attachments/assets/4a64bc8f-15a7-40b8-ab5b-85e3ae8369b6)
 
 ## 2-Classification des Erreurs
 Le modèle de classification obtenue affiche une accuracy de 99,99 %, ce qui signifie qu'il classe correctement presque toutes les instances du jeu de données. Le rapport de classification montre une précision et un rappel de 1,00 pour la classe majoritaire (0), indiquant une performance parfaite. Pour la classe minoritaire (1), la précision est également de 1,00, mais le rappel est légèrement inférieur à 0,99, ce qui signifie que 1 % des anomalies n'ont pas été détectées. Les moyennes macro et pondérée des métriques (précision, rappel, F1-Score) sont toutes de 1,00, confirmant une performance équilibrée et excellente. Cependant, il est important de vérifier si le modèle généralise bien sur de nouvelles données et de s'assurer que le déséquilibre entre les classes n'affecte pas sa robustesse.
+![image](https://github.com/user-attachments/assets/f9fa9662-78d8-42e5-ad0c-6f3dfef6cc93)
 
 ## 3-Clustering des Événements
 On observe une bonne séparation entre les groupes, ce qui indique une différenciation nette des logs selon les processus et les hôtes associés. Les clusters semblent répartis selon des plages spécifiques de processus, suggérant des comportements homogènes pour certains processus ou groupes de machines.
 Le cluster 1 (vert) présente une dispersion plus large sur les hôtes, tandis que les clusters 0 (bleu) et 2 (orange) sont concentrés autour de certaines plages de processus.
+![image](https://github.com/user-attachments/assets/eb557155-03ae-4760-a7f7-82041a89a9e3)
+## Visualisation 
+![image](https://github.com/user-attachments/assets/26a5f2aa-f918-466b-9adc-264a40bce4df)
+![image](https://github.com/user-attachments/assets/bc19211f-90bf-4a34-bf97-b42fae999e1b)
 
 # Technologies Utilisées
 **Python** : Langage principal pour le traitement des données et l'implémentation des modèles.
