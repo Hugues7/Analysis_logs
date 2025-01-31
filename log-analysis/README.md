@@ -30,22 +30,13 @@ Les principales étapes de l'analyse sont les suivantes :
 6. **Visualisation & Génération de Rapports** : Statistiques et graphiques.
 
    
-+-------------------+       +-------------------+       +-------------------+
-|  Données Brutes   | ----> |  Préparation des  | ----> |  Analyse          |
-|                   |       |  Données          |       |  Exploratoire     |
-+-------------------+       +-------------------+       +-------------------+
+|Données Brutes| ----> |Préparation des Données| ----> | Analyse Exploratoire |
                                                                  |
                                                                  v
-+-------------------+       +-------------------+       +-------------------+
-|  Détection des    | <---- |  Classification   | <---- |  Clustering       |
-|  Anomalies        |       |                   |       |                   |
-+-------------------+       +-------------------+       +-------------------+
+| Détection des  Anomalies | <---- | Classification | <---- | Clustering |
                                                                  |
                                                                  v
-+-------------------+
-|  Visualisation &  |
-|  Rapports         |
-+-------------------+
+                                                          |Visualisation|
 ## ⚙️ Prérequis
 Assurez-vous d'avoir les éléments suivants :
 - Python 3.7 ou supérieur
