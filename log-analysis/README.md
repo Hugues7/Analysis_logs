@@ -28,6 +28,8 @@ Les principales étapes de l'analyse sont les suivantes :
 4. **Classification** : Modélisation supervisée pour distinguer les erreurs des logs normaux (Random Forest).
 5. **Clustering** : Regroupement des logs similaires avec K-Means.
 6. **Visualisation & Génération de Rapports** : Statistiques et graphiques.
+
+   
 +-------------------+       +-------------------+       +-------------------+
 |  Données Brutes   | ----> |  Préparation des  | ----> |  Analyse          |
 |                   |       |  Données          |       |  Exploratoire     |
